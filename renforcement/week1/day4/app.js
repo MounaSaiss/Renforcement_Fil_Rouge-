@@ -209,38 +209,4 @@ console.log(trieProduits(rechercherProduits(catalogue, { enStock: true }), 'prix
 //   produitLePlusCher : { nom, prix }, 
 //   produitMieuxNote  : { nom, note } 
 // }
-function statsGlobales(catalogue) {
-    const resultat = catalogue.reduce((acc, product) => {
-        acc.totalProduits += 1;
-        if (product.stock > 0) {
-            acc.produitsEnStock += 1;
-        }
-        if (product.stock === 0) {
-            acc.produitsEnRupture += 1;
-        }
-        acc.valeurStockTotale += product.prix * product.stock;
-        acc.prixMoyen = valeurStockTotale / totalProduits;
-        if (product.prix > acc.produitLePlusCher.prix) {
-            acc.produitLePlusCher = {
-                nom: product.nom,
-                prix: product.prix
-            };
-        }
-        if (product.note > acc.produitMieuxNote.note) {
-            acc.produitMieuxNote = {
-                nom: product.nom,
-                note: product.note
-            };
-        }
-        return acc;
-    }, {
-        totalProduits: 0,
-        produitsEnStock: 0,
-        produitsEnRupture: 0,
-        valeurStockTotale: 0,
-        prixMoyen: 0,
-        produitLePlusCher: { nom: "", prix: -Infinity },
-        produitMieuxNote: { nom: "", note: -Infinity }
-    });
-}
 
